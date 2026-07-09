@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Repository.Repositories.Interfaces
 {
-    internal class IDepartamentRepository
+    public interface IDepartmentRepository : IBaseRepository<Departament>
     {
     }
 }
