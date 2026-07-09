@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Services.Services.Interfaces
 {
-    internal class IDepartamentService
+    public interface IDepartmentService : IBaseService<Departament>
     {
+        List<Departament> Search(string searchText);
+        List<Departament> SortByCapacity();
     }
 }

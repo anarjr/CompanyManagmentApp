@@ -13,6 +13,19 @@ namespace Repository.Repositories
         {
 
         }
+
+        public List<Departament> Search(string searchText)
+        {
+            return AppDbContext.Departments.Where(m => m.Name.Contains(searchText)).ToList();
+                
+        }
+
+        public List<Departament> SortByCapacity()
+        {
+            return AppDbContext.Departments.OrderBy(d => d.Capacity).ToList();
+
+
+        }
     }
 }
 

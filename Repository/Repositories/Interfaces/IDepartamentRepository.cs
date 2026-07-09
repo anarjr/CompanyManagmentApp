@@ -7,5 +7,7 @@ namespace Repository.Repositories.Interfaces
 {
     public interface IDepartmentRepository : IBaseRepository<Departament>
     {
+        List<Departament> Search(string searchText);
+        List<Departament> SortByCapacity();
     }
 }
