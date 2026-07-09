@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    internal class BaseEntity
+    public abstract class BaseEntity
     {
+        public int İd { get; set; }
+
     }
 }

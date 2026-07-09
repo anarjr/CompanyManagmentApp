@@ -1,10 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Entities;
+using Domain.Models;
+
 
 namespace Domain.Models
 {
-    internal class Employee
+    public class Employee : BaseEntity
     {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public int Age { get; set; }
+        public string Address { get; set; }
+        public Department Department { get; set; }
     }
 }
