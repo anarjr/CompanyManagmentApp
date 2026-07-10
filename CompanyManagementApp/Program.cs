@@ -1,4 +1,5 @@
 ﻿using CompanyManagementApp.Controllers;
+using Domain.Models;
 
 public class Program
 {
@@ -36,6 +37,127 @@ public class Program
 
             switch (choice)
             {
+                case 1:
+                    {
+                        Console.Write("Department name: ");
+                        string name = Console.ReadLine();
+
+                        Console.Write("Capacity: ");
+                        int capacity = int.Parse(Console.ReadLine());
+
+                        Departament department = new Departament
+                        {
+                            İd = departmentController.GetAll().Count + 1,
+                            Name = name,
+                            Capacity = capacity
+                        };
+
+                        departmentController.Create(department);
+
+                        Console.WriteLine("Department created successfully.");
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.Write("Department Id: ");
+                        int id = int.Parse(Console.ReadLine());
+
+                        Departament department = departmentController.GetById(id);
+
+                        if (department != null)
+                        {
+                            Console.Write("New Name: ");
+                            department.Name = Console.ReadLine();
+
+                            Console.Write("New Capacity: ");
+                            department.Capacity = int.Parse(Console.ReadLine());
+
+                            departmentController.Update(department);
+
+                            Console.WriteLine("Department updated successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Department not found.");
+                        }
+
+                        break;
+                    }
+                case 3:
+                    {
+                        Console.Write("Department Id: ");
+                        int id = int.Parse(Console.ReadLine());
+
+                        departmentController.Delete(id);
+
+                        Console.WriteLine("Department deleted successfully.");
+
+                        break;
+                    }
+                case 4:
+                    {
+                        Console.Write("Department Id: ");
+                        int id = int.Parse(Console.ReadLine());
+
+                        Departament department = departmentController.GetById(id);
+
+                        if (department != null)
+                        {
+                            Console.WriteLine($"Id: {department.İd}");
+                            Console.WriteLine($"Name: {department.Name}");
+                            Console.WriteLine($"Capacity: {department.Capacity}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Department not found.");
+                        }
+
+                        break;
+                    }
+                case 5:
+                    {
+                        List<Departament> departments = departmentController.GetAll();
+
+                        foreach (Departament department in departments)
+                        {
+                            Console.WriteLine(
+                                $"Id: {department.İd}, Name: {department.Name}, Capacity: {department.Capacity}"
+                            );
+                        }
+
+                        break;
+                    }
+
+                case 6:
+                    {
+                        Console.Write("Search text: ");
+                        string searchText = Console.ReadLine();
+
+                        List<Departament> departments = departmentController.Search(searchText);
+
+                        foreach (Departament department in departments)
+                        {
+                            Console.WriteLine(
+                                $"Id: {department.İd}, Name: {department.Name}, Capacity: {department.Capacity}"
+                            );
+                        }
+
+                        break;
+                    }
+
+                case 7:
+                    {
+                        List<Departament> departments = departmentController.SortByCapacity();
+
+                        foreach (Departament department in departments)
+                        {
+                            Console.WriteLine(
+                                $"Id: {department.İd}, Name: {department.Name}, Capacity: {department.Capacity}"
+                            );
+                        }
+
+                        break;
+                    }
             }
         }
     }
