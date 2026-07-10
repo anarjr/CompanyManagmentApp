@@ -158,6 +158,203 @@ public class Program
 
                         break;
                     }
+                case 8:
+                    {
+                        Console.Write("Employee Name: ");
+                        string name = Console.ReadLine();
+
+                        Console.Write("Surname: ");
+                        string surname = Console.ReadLine();
+
+                        Console.Write("Age: ");
+                        int age = int.Parse(Console.ReadLine());
+
+                        Console.Write("Address: ");
+                        string address = Console.ReadLine();
+
+                        Console.Write("Department Id: ");
+                        int departmentId = int.Parse(Console.ReadLine());
+
+                        Departament department = departmentController.GetById(departmentId);
+
+                        Employee employee = new Employee
+                        {
+                            İd = employeeController.GetAll().Count + 1,
+                            Name = name,
+                            Surname = surname,
+                            Age = age,
+                            Address = address,
+                            Department = department
+                        };
+
+                        employeeController.Create(employee);
+
+                        Console.WriteLine("Employee created successfully.");
+
+                        break;
+                    }
+                case 9:
+                    {
+                        Console.Write("Employee Id: ");
+                        int id = int.Parse(Console.ReadLine());
+
+                        Employee employee = employeeController.GetById(id);
+
+                        Console.Write("New Name: ");
+                        employee.Name = Console.ReadLine();
+
+                        Console.Write("New Surname: ");
+                        employee.Surname = Console.ReadLine();
+
+                        Console.Write("New Age: ");
+                        employee.Age = int.Parse(Console.ReadLine());
+
+                        Console.Write("New Address: ");
+                        employee.Address = Console.ReadLine();
+
+                        Console.Write("New Department Id: ");
+                        int departmentId = int.Parse(Console.ReadLine());
+
+                        employee.Department = departmentController.GetById(departmentId);
+
+                        employeeController.Update(employee);
+
+                        Console.WriteLine("Employee updated successfully.");
+
+                        break;
+                    }
+                case 10:
+                    {
+                        Console.Write("Employee Id: ");
+                        int id = int.Parse(Console.ReadLine());
+
+                        employeeController.Delete(id);
+
+                        Console.WriteLine("Employee deleted successfully.");
+
+                        break;
+                    }
+                case 11:
+                    {
+                        Console.Write("Employee Id: ");
+                        int id = int.Parse(Console.ReadLine());
+
+                        Employee employee = employeeController.GetById(id);
+
+                        if (employee != null)
+                        {
+                            Console.WriteLine($"Id: {employee.İd}");
+                            Console.WriteLine($"Name: {employee.Name}");
+                            Console.WriteLine($"Surname: {employee.Surname}");
+                            Console.WriteLine($"Age: {employee.Age}");
+                            Console.WriteLine($"Address: {employee.Address}");
+                            Console.WriteLine($"Department: {employee.Department.Name}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Employee not found.");
+                        }
+
+                        break;
+                    }
+                case 12:
+                    {
+                        Console.Write("Age: ");
+                        int age = int.Parse(Console.ReadLine());
+
+                        List<Employee> employees = employeeController.GetEmployeesByAge(age);
+
+                        foreach (Employee employee in employees)
+                        {
+                            Console.WriteLine($"Id: {employee.İd}, Name: {employee.Name}, Surname: {employee.Surname}, Age: {employee.Age}");
+                        }
+
+                        break;
+                    }
+                case 13:
+                    {
+                        Console.Write("Department Id: ");
+                        int departmentId = int.Parse(Console.ReadLine());
+
+                        List<Employee> employees =
+                            employeeController.GetEmployeesByDepartmentId(departmentId);
+
+                        foreach (Employee employee in employees)
+                        {
+                            Console.WriteLine(
+                                $"Id: {employee.İd}, Name: {employee.Name}, Surname: {employee.Surname}, Department: {employee.Department.Name}"
+                            );
+                        }
+
+                        break;
+                    }
+
+                case 14:
+                    {
+                        Console.Write("Department Name: ");
+                        string departmentName = Console.ReadLine();
+
+                        List<Employee> employees =
+                            employeeController.GetEmployeesByDepartmentName(departmentName);
+
+                        foreach (Employee employee in employees)
+                        {
+                            Console.WriteLine(
+                                $"Id: {employee.İd}, Name: {employee.Name}, Surname: {employee.Surname}, Department: {employee.Department.Name}"
+                            );
+                        }
+
+                        break;
+                    }
+
+                case 15:
+                    {
+                        Console.Write("Search text: ");
+                        string searchText = Console.ReadLine();
+
+                        List<Employee> employees =
+                            employeeController.SearchByNameOrSurname(searchText);
+
+                        foreach (Employee employee in employees)
+                        {
+                            Console.WriteLine(
+                                $"Id: {employee.İd}, Name: {employee.Name}, Surname: {employee.Surname}, Age: {employee.Age}"
+                            );
+                        }
+
+                        break;
+                    }
+                case 16:
+                    {
+                        int count = employeeController.GetAllCount();
+
+                        Console.WriteLine($"Employee Count: {count}");
+
+                        break;
+                    }
+                case 17:
+                    {
+                        List<Employee> employees = employeeController.GetAll();
+
+                        foreach (Employee employee in employees)
+                        {
+                            Console.WriteLine($"Id: {employee.İd}");
+                            Console.WriteLine($"Name: {employee.Name}");
+                            Console.WriteLine($"Surname: {employee.Surname}");
+                            Console.WriteLine($"Age: {employee.Age}");
+                            Console.WriteLine($"Address: {employee.Address}");
+                            Console.WriteLine($"Department: {employee.Department.Name}");
+                            Console.WriteLine("--------------------------------");
+                        }
+
+                        break;
+                    }
+                case 0:
+                    {
+                        isRunning = false;
+                        Console.WriteLine("Program dayandirildi.");
+                        break;
+                    }
             }
         }
     }
