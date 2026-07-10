@@ -18,24 +18,24 @@ namespace Services.Services
             _context = repository;
         }
 
-        public void Create(T entity)
+        public virtual void Create(T entity)
         {
             _context.Create(entity);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             T existData = GetById(entity.İd);
             _context.Update(entity);
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             T existData = GetById(id);
             _context.Delete(existData);
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             T data = _context.GetById(id);
 
@@ -47,7 +47,7 @@ namespace Services.Services
             return data;
         }
 
-        public List<T> GetAll()
+        public virtual List<T> GetAll()
         {
             return _context.GetAll();
         }
