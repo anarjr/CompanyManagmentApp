@@ -31,5 +31,17 @@ namespace Services.Services
         {
             return _departmentRepository.SortByCapacity();
         }
+        public override void Create(Departament department)
+        {
+            var existDepartment = GetAll()
+                .FirstOrDefault(x => x.Name.ToLower() == department.Name.ToLower());
+
+            if (existDepartment != null)
+            {
+                throw new System.Exception("Bu adda department artıq mövcuddur.");
+            }
+
+            base.Create(department);
+        }
     }
 }

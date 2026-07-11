@@ -20,9 +20,8 @@ namespace Services.Services
         {
             if (employee.Age < 18 || employee.Age > 65)
             {
-                throw new System.Exception(
-                    "Employee age 18 ile 65 arasinda olmalidir."
-                );
+                throw new System.Exception("Employee age 18 ile 65 arasinda olmalidir.");
+
             }
 
             base.Create(employee);
